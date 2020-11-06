@@ -1,6 +1,8 @@
 #!/bin/bash
 ### Install Tomcat 9 + JRE8 on Ubuntu, Debian, CentOS, OpenSUSE 64Bits
 
+tomcat_version=9.0.39
+
 # Check if user has root privileges
 if [[ $EUID -ne 0 ]]; then
 echo "You must run the script as root or using sudo"
@@ -18,10 +20,10 @@ groupadd tomcat && useradd -M -s /bin/nologin -g tomcat -d /usr/local/tomcat tom
 sudo apt-get install default-jdk
 
 cd /usr/local/
-wget https://apache.panu.it/tomcat/tomcat-9/v9.0.33/bin/apache-tomcat-9.0.33.tar.gz
-tar -xvf apache-tomcat-9.0.33.tar.gz
-mv apache-tomcat-9.0.33 tomcat
-rm -f apache-tomcat-9.0.33.tar.gz
+wget https://downloads.apache.org/tomcat/tomcat-9/v$tomcat_version/bin/apache-tomcat-$tomcat_version.tar.gz
+tar -xvf apache-tomcat-$tomcat_version.tar.gz
+mv apache-tomcat-$tomcat_version tomcat
+rm -f apache-tomcat-$tomcat_version.tar.gz
 
 cd /usr/local/tomcat
 chgrp -R tomcat conf
